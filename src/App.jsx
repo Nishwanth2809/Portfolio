@@ -178,6 +178,23 @@ function App() {
         state.lockedAxis = absX > absY ? 'x' : 'y'
       }
 
+      if (state.lockedAxis === 'y') {
+        const page = e.target.closest('.page')
+        if (page) {
+          const maxScrollTop = page.scrollHeight - page.clientHeight
+          const canScrollDown = dy < 0 && page.scrollTop < maxScrollTop - 1
+          const canScrollUp = dy > 0 && page.scrollTop > 1
+
+          if (canScrollDown || canScrollUp) {
+            state.pointerId = null
+            try {
+              viewport.releasePointerCapture(e.pointerId)
+            } catch {}
+            return
+          }
+        }
+      }
+
       state.dragging = true
       state.currentX = e.clientX
       state.currentY = e.clientY
