@@ -69,16 +69,6 @@ const ScrollStack = ({
     const container = getScrollContainer()
     if (!cardsRef.current.length || !container) return
 
-    // Mobile fallback: render as a clean vertical list without overlapping clipping
-    if (window.innerWidth <= 680) {
-      cardsRef.current.forEach((card) => {
-        if (!card) return
-        card.style.transform = 'none'
-        card.style.filter = 'none'
-      })
-      return
-    }
-
     const isWindow = useWindowScroll || container === document.documentElement
     const scrollTop = isWindow ? window.scrollY : container.scrollTop
     const containerHeight = isWindow ? window.innerHeight : container.clientHeight

@@ -31,11 +31,9 @@
 
 @media (max-width: 680px) {
   .scroll-stack-inner {
-    padding-bottom: 20px;
+    padding-bottom: 40px;
   }
   .scroll-stack-card {
-    margin-bottom: 18px !important;
-    transform: none !important;
-    filter: none !important;
+    margin-bottom: 16px;
   }
 }

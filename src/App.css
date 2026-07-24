@@ -645,12 +645,9 @@ html, body, #root {
     max-width: 100%;
   }
   .proj-card {
-    position: relative !important;
-    top: auto !important;
     min-height: auto;
-    margin-bottom: 18px !important;
+    margin-bottom: 18px;
     border-radius: 18px;
-    transform: none !important;
   }
   .proj-card-inner {
     padding: 20px 18px 14px;
