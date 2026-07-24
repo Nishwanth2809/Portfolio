@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishwanth Yarra — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #4f46e5;
+      --accent-light: #818cf8;
+      --accent-bg: #eef2ff;
+      --dark: #111827;
+      --gray-900: #1f2937;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-400: #9ca3af;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --white: #ffffff;
+    }
+
+    html { font-size: 10.5pt; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--gray-700);
+      background: var(--white);
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /* HEADER                                         */
+    /* ═══════════════════════════════════════════════ */
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
+      color: var(--white);
+      padding: 32px 40px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .header-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 28pt;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .header-title {
+      font-size: 11pt;
+      font-weight: 500;
+      color: var(--accent-light);
+      margin-top: 6px;
+      letter-spacing: 0.8px;
+    }
+
+    .header-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 9pt;
+      text-align: right;
+      color: rgba(255,255,255,0.85);
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .header-contact a {
+      color: rgba(255,255,255,0.9);
+      transition: color 0.2s;
+    }
+
+    .header-contact a:hover {
+      color: var(--accent-light);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /* MAIN CONTENT                                   */
+    /* ═══════════════════════════════════════════════ */
+    .content {
+      padding: 24px 40px 32px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12pt;
+      font-weight: 800;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gray-200), transparent);
+    }
+
+    /* ── Summary ── */
+    .summary p {
+      font-size: 10pt;
+      line-height: 1.65;
+      color: var(--gray-600);
+    }
+
+    /* ── Skills ── */
+    .skills-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .skill-category {
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+
+    .skill-items {
+      font-size: 9.5pt;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ── Entries (Experience / Projects) ── */
+    .entry {
+      margin-bottom: 14px;
+      padding-left: 14px;
+      border-left: 2.5px solid var(--accent-bg);
+      position: relative;
+    }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: -4.5px;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .entry-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .entry-date {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--gray-500);
+      background: var(--gray-100);
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .entry-subtitle {
+      font-size: 9.5pt;
+      color: var(--gray-500);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    .entry ul {
+      margin-left: 14px;
+      margin-top: 4px;
+    }
+
+    .entry li {
+      font-size: 9.5pt;
+      color: var(--gray-600);
+      margin-bottom: 2px;
+      line-height: 1.55;
+    }
+
+    .entry li::marker {
+      color: var(--accent-light);
+    }
+
+    .tech-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 5px;
+    }
+
+    .tech-tag {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 1px 7px;
+      border-radius: 3px;
+      letter-spacing: 0.2px;
+    }
+
+    .github-link {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--accent);
+      margin-left: 8px;
+    }
+
+    /* ── Education ── */
+    .edu-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .edu-degree {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .edu-year {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--gray-500);
+      background: var(--gray-100);
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .edu-school {
+      font-size: 9.5pt;
+      color: var(--gray-500);
+      font-style: italic;
+    }
+
+    /* ── Footer links ── */
+    .links-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 9.5pt;
+    }
+
+    .links-row a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /* PRINT                                          */
+    /* ═══════════════════════════════════════════════ */
+    @media print {
+      html { font-size: 10pt; }
+
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 24px 32px 20px;
+      }
+
+      .content {
+        padding: 18px 32px 20px;
+      }
+
+      .entry::before {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .section-icon {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .tech-tag {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .entry-date, .edu-year {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a { color: var(--accent) !important; }
+
+      @page {
+        margin: 0;
+        size: letter;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <h1 class="header-name">Nishwanth Yarra</h1>
+        <p class="header-title">AI &amp; Machine Learning Developer · Full-Stack Engineer</p>
+      </div>
+      <div class="header-contact">
+        <div class="contact-item">
+          <span>nishwanthyarra@gmail.com</span>
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 8l8 6 8-6"/></svg>
+        </div>
+        <div class="contact-item">
+          <a href="https://www.linkedin.com/in/yarranishwanth">linkedin.com/in/yarranishwanth</a>
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div class="contact-item">
+          <a href="https://github.com/nishwanth2809">github.com/nishwanth2809</a>
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.94-2.64c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.46c0 5.42 3.3 6.61 6.44 7A3.4 3.4 0 0 0 9 18.1V22"/></svg>
+        </div>
+        <div class="contact-item">
+          <a href="https://nishwanth2809.github.io">nishwanth2809.github.io</a>
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ═══ SUMMARY ═══ -->
+    <section class="section summary">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h2 class="section-title">Summary</h2>
+        <div class="section-line"></div>
+      </div>
+      <p>
+        AI-focused developer with hands-on experience building intelligent systems using computer vision, NLP, and scalable web technologies. Proven ability to ship end-to-end products — from training ML models to deploying full-stack applications with real-time inference. Passionate about turning AI research into deployable tools with clear, measurable impact.
+      </p>
+    </section>
+
+    <!-- ═══ TECHNICAL SKILLS ═══ -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-container">
+        <div class="skill-row">
+          <span class="skill-category">AI / ML</span>
+          <span class="skill-items">Machine Learning, NLP, Computer Vision, Speech Processing, PyTorch, scikit-learn, Keras, Streamlit</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Languages</span>
+          <span class="skill-items">Python, Java (OOP, DSA), JavaScript, C, SQL, HTML5, CSS3</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Frontend</span>
+          <span class="skill-items">React, Angular.js, React Native, Vite, Tailwind CSS</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Backend</span>
+          <span class="skill-items">Node.js, Flask, FastAPI, REST APIs, Firebase, Nginx, Vercel</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Data</span>
+          <span class="skill-items">MongoDB, SQLite, NumPy, Pandas, Matplotlib, Power BI</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">DevOps</span>
+          <span class="skill-items">Git, GitHub, GitHub Pages, Render, Linux, Postman</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Design</span>
+          <span class="skill-items">Figma, Adobe XD, Canva, UI/UX Principles</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h2 class="section-title">Experience</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Full Stack Web Development Intern</span>
+          <span class="entry-date">Apr 2026 – Oct 2026</span>
+        </div>
+        <p class="entry-subtitle">ElevanceSkills</p>
+        <ul>
+          <li>Developed and deployed real-time web applications using modern frontend and backend technologies in a production environment</li>
+          <li>Collaborated on full-stack projects with deadline-driven deliverables, applying agile development workflows</li>
+          <li>Built responsive user interfaces and integrated RESTful APIs to deliver end-to-end features</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Design Member</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <p class="entry-subtitle">SDC — Sreyas Developer's Conference</p>
+        <ul>
+          <li>Designed digital content including posters, banners, and event collateral, improving event outreach and engagement</li>
+          <li>Maintained visual consistency across marketing materials by collaborating with cross-functional team members</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Deepfake Detection System <a class="github-link" href="https://github.com/Nishwanth2809/Deep-Fake-Detection" target="_blank">↗ GitHub</a></span>
+        </div>
+        <ul>
+          <li>Engineered a real-time deepfake detection pipeline using ResNet18 and OpenCV, achieving ~90% classification accuracy</li>
+          <li>Implemented frame-level analysis with live video inference for practical media authenticity verification</li>
+          <li>Deployed an interactive demo using Streamlit for non-technical users to test detection</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">ResNet18</span>
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">Streamlit</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AI Medical Report Analyzer <a class="github-link" href="https://github.com/Nishwanth2809/AI-Medical-Report-Analyzer" target="_blank">↗ GitHub</a></span>
+        </div>
+        <ul>
+          <li>Built a full-stack application that extracts and analyzes medical reports using OCR and AI-powered NLP workflows</li>
+          <li>Developed a React frontend paired with a Node.js backend to deliver readable AI-generated summaries</li>
+          <li>Simplified complex healthcare report data into actionable patient insights</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">OCR</span>
+          <span class="tech-tag">NLP</span>
+          <span class="tech-tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AI-Based Brahmi Script Recognition and Translation System <a class="github-link" href="https://github.com/Nishwanth2809/Brahmi-Script" target="_blank">↗ GitHub</a></span>
+        </div>
+        <ul>
+          <li>Built an AI-powered web application that recognizes ancient Brahmi script characters from uploaded images</li>
+          <li>Implemented OpenCV image preprocessing and character segmentation with a TensorFlow/Keras CNN model for classification</li>
+          <li>Generated confidence scores and transliteration output in Telugu, Tamil, and Devanagari/Hindi through a React + Flask architecture</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">TensorFlow/Keras</span>
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">Vercel</span>
+          <span class="tech-tag">Render</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Mood-Based Music Recommendation <a class="github-link" href="https://github.com/Nishwanth2809/Moodify-Let-Your-Mood-Choose-the-Music-" target="_blank">↗ GitHub</a></span>
+        </div>
+        <ul>
+          <li>Developed an NLP-powered mood detection engine that classifies user input and maps it to curated Spotify playlists</li>
+          <li>Integrated Spotify Web API for real-time music recommendations with an interactive experience</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">NLP</span>
+          <span class="tech-tag">Spotify API</span>
+          <span class="tech-tag">Streamlit</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AI Attention Monitoring System <a class="github-link" href="https://github.com/Nishwanth2809/AI-Attention" target="_blank">↗ GitHub</a></span>
+        </div>
+        <ul>
+          <li>Created a real-time attention tracker using computer vision with gaze detection, blink analysis, and head pose estimation</li>
+          <li>Computed live attention scores and session analytics via Flask backend with MediaPipe and OpenCV</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">MediaPipe</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">React</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Voice Chat AI Assistant</span>
+        </div>
+        <ul>
+          <li>Built a voice-first AI assistant with real-time speech recognition, NLP, and synthesized responses</li>
+          <li>Developed a fast response loop using FastAPI and speech processing (TTS/STT) for low-latency interaction</li>
+        </ul>
+        <div class="tech-line">
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">TTS/STT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EDUCATION ═══ -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+        </div>
+        <h2 class="section-title">Education</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="entry" style="margin-bottom:0">
+        <div class="edu-grid">
+          <span class="edu-degree">B.Tech in Computer Science (AI &amp; ML Specialization)</span>
+          <span class="edu-year">Expected 2027</span>
+        </div>
+        <p class="edu-school">Sreyas Institute of Engineering and Technology, Hyderabad</p>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
