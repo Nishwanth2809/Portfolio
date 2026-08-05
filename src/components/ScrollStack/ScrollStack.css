@@ -3,12 +3,14 @@
   width: 100%;
   height: auto;
   overflow: visible;
+  touch-action: pan-y;
 }
 
 .scroll-stack-inner {
   position: relative;
   width: 100%;
   padding-bottom: 60px;
+  touch-action: pan-y;
 }
 
 .scroll-stack-card {
@@ -22,6 +24,7 @@
   box-sizing: border-box;
   position: relative;
   background: var(--bg);
+  touch-action: pan-y;
 }
 
 .scroll-stack-end {

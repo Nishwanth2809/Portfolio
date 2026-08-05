@@ -213,6 +213,15 @@ const ScrollStack = ({
       handleScroll()
     }
 
+    let resizeObserver
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        measureCardOffsets()
+        updateCardTransforms()
+      })
+      resizeObserver.observe(scroller)
+    }
+
     container.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleResize, { passive: true })
     updateCardTransforms()
@@ -220,6 +229,9 @@ const ScrollStack = ({
     return () => {
       container.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+      }
       if (rafIdRef.current) {
         cancelAnimationFrame(rafIdRef.current)
         rafIdRef.current = null

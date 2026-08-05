@@ -140,7 +140,8 @@ function App() {
       if (
         wheelLockRef.current ||
         e.pointerType === 'mouse' ||
-        e.target.closest('.glass-nav')
+        e.target.closest('.glass-nav') ||
+        e.target.closest('.proj-modal-overlay')
       ) {
         return
       }
@@ -155,12 +156,6 @@ function App() {
         dragging: false,
         lockedAxis: null,
       }
-
-      try {
-        viewport.setPointerCapture(e.pointerId)
-      } catch {
-        // Some mobile browsers do not allow capture for every pointer target.
-      }
     }
 
     const handlePointerMove = (e) => {
@@ -172,27 +167,26 @@ function App() {
       const absX = Math.abs(dx)
       const absY = Math.abs(dy)
 
-      if (!state.lockedAxis && absX < 8 && absY < 8) return
-
       if (!state.lockedAxis) {
-        state.lockedAxis = absX > absY ? 'x' : 'y'
+        if (absX < 8 && absY < 8) return
+
+        if (absX > absY * 1.2) {
+          state.lockedAxis = 'x'
+          state.dragging = true
+          try {
+            viewport.setPointerCapture(e.pointerId)
+          } catch {
+            // Some mobile browsers do not allow capture for every pointer target.
+          }
+        } else {
+          state.lockedAxis = 'y'
+          state.dragging = false
+          return
+        }
       }
 
       if (state.lockedAxis === 'y') {
-        const page = e.target.closest('.page')
-        if (page) {
-          const maxScrollTop = page.scrollHeight - page.clientHeight
-          const canScrollDown = dy < 0 && page.scrollTop < maxScrollTop - 1
-          const canScrollUp = dy > 0 && page.scrollTop > 1
-
-          if (canScrollDown || canScrollUp) {
-            state.pointerId = null
-            try {
-              viewport.releasePointerCapture(e.pointerId)
-            } catch {}
-            return
-          }
-        }
+        return
       }
 
       state.dragging = true
@@ -201,7 +195,7 @@ function App() {
 
       e.preventDefault()
 
-      const dragDistance = state.lockedAxis === 'y' ? dy : dx
+      const dragDistance = dx
       const currentIndex = activeIndexRef.current
       const isAtStart = currentIndex === 0 && dragDistance > 0
       const isAtEnd = currentIndex === TABS.length - 1 && dragDistance < 0
@@ -224,11 +218,14 @@ function App() {
       }
 
       state.pointerId = null
-      if (!state.dragging) return
+      if (!state.dragging || state.lockedAxis !== 'x') {
+        state.dragging = false
+        state.lockedAxis = null
+        return
+      }
 
       const dx = state.currentX - state.startX
-      const dy = state.currentY - state.startY
-      const dragDistance = state.lockedAxis === 'y' ? dy : dx
+      const dragDistance = dx
       const elapsed = Math.max(performance.now() - state.startedAt, 1)
       const velocity = Math.abs(dragDistance) / elapsed
       const currentIndex = activeIndexRef.current
