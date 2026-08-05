@@ -69,14 +69,25 @@ const ScrollStack = ({
     const isWindow = useWindowScroll || container === document.documentElement
     const containerTop = isWindow ? 0 : container.getBoundingClientRect().top
     const scrollTop = isWindow ? window.scrollY : container.scrollTop
+    const cards = cardsRef.current
+    if (!cards.length) return
 
-    cardOffsetsRef.current = cardsRef.current.map((card) => {
+    const savedTransforms = cards.map((card) => card?.style.transform || '')
+    cards.forEach((card) => {
+      if (card) card.style.transform = 'none'
+    })
+
+    cardOffsetsRef.current = cards.map((card) => {
       if (!card) return 0
       if (isWindow) {
         return card.getBoundingClientRect().top + window.scrollY
       } else {
         return card.getBoundingClientRect().top - containerTop + scrollTop
       }
+    })
+
+    cards.forEach((card, i) => {
+      if (card) card.style.transform = savedTransforms[i]
     })
   }, [getScrollContainer, useWindowScroll])
 
@@ -215,6 +226,7 @@ const ScrollStack = ({
     const cards = Array.from(scroller.querySelectorAll('.scroll-stack-card'))
     cardsRef.current = cards
     const transformsCache = lastTransformsRef.current
+    transformsCache.clear()
 
     cards.forEach((card, i) => {
       if (i < cards.length - 1) {
