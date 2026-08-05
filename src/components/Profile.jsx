@@ -77,7 +77,7 @@ export default function Profile({ className }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            View Résumé
+            View Resume
             <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path
                 d="M2 12L12 2M12 2H5M12 2V9"
