@@ -320,6 +320,12 @@ html, body, #root {
   width: 100%;
   max-width: 720px;
   padding-bottom: 20px;
+  overflow: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.proj-grid::-webkit-scrollbar {
+  display: none;
 }
 .proj-card {
   background: var(--bg);
