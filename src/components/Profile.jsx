@@ -2,6 +2,18 @@ import { useState } from 'react'
 
 const TIMELINE = [
   {
+    id: 'exp-storytent',
+    type: 'work',
+    year: '2026',
+    period: 'Aug 2026 — Present',
+    title: 'Software Developer Intern',
+    org: 'StoryTent (Daxinataha Mastishk Media)',
+    location: 'Thane, India / Remote',
+    summary:
+      'Maintained source code and integrated external packages into the StoryTent platform. Developed additional full-stack features to enhance user experience and mitigated IT infrastructure delivery challenges.',
+    stack: ['Full-stack Development', 'IT Infrastructure'],
+  },
+  {
     id: 'exp-01',
     type: 'work',
     year: '2026',

@@ -2,6 +2,17 @@ import { useState } from 'react'
 
 const EXPERIENCE = [
   {
+    id: 'exp-storytent',
+    year: '2026',
+    role: 'Software Developer Intern',
+    org: 'StoryTent',
+    location: 'Thane, India',
+    period: 'Aug 2026 — Present',
+    summary:
+      'Maintained source code and integrated external packages into the StoryTent platform. Developed additional full-stack features to enhance user experience and mitigated IT infrastructure delivery challenges.',
+    stack: ['Full-stack Development', 'IT Infrastructure'],
+  },
+  {
     id: 'exp-01',
     year: '2026',
     role: 'Full Stack Web Development Intern',
@@ -117,7 +128,7 @@ export default function Profile({ className }) {
         <div className="profile-experience-section animate-slide-up" style={{ animationDelay: '0.24s' }}>
           <div className="profile-section-bar">
             <span className="profile-section-title">Work Experience</span>
-            <span className="profile-section-count">02 Roles</span>
+            <span className="profile-section-count">03 Roles</span>
           </div>
 
           <div className="profile-exp-list">
