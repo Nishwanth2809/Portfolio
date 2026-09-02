@@ -18,8 +18,8 @@ export default function Experience() {
           <p className="experience-org">StoryTent (Daxinataha Mastishk Media) &nbsp;·&nbsp; Aug 2026 — Present</p>
 
           <ul className="experience-list">
-            <li>Maintained source code and integrated external packages and software into the StoryTent platform.</li>
-            <li>Developed additional full-stack features to enhance user experience and delivery across the app and web portal.</li>
+            <li>Maintained source code and integrated external packages across both the StoryTent mobile app and web portal.</li>
+            <li>Developed additional full-stack features to enhance user experience and delivery across all platforms.</li>
             <li>Mitigated bugs and resolved delivery challenges within the IT infrastructure.</li>
           </ul>
         </div>

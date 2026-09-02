@@ -10,8 +10,8 @@ const TIMELINE = [
     org: 'StoryTent (Daxinataha Mastishk Media)',
     location: 'Thane, India / Remote',
     summary:
-      'Maintained source code and integrated external packages into the StoryTent platform. Developed additional full-stack features to enhance user experience and mitigated IT infrastructure delivery challenges.',
-    stack: ['Full-stack Development', 'IT Infrastructure'],
+      'Maintained source code and integrated external packages across both the StoryTent mobile app and web portal. Developed additional full-stack features to enhance user experience and mitigated IT infrastructure delivery challenges.',
+    stack: ['Full-stack Development', 'Mobile App Development', 'IT Infrastructure'],
   },
   {
     id: 'exp-01',
