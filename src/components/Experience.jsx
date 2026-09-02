@@ -58,8 +58,8 @@ export default function Experience() {
           <div className="experience-meta">
             <span>
               <strong>Certificate: </strong>
-              <a href="/ElevanceSkills-Full  Stack Web Development-Intern-OL.pdf" target="_blank" rel="noopener noreferrer">
-                View Offer Letter →
+              <a href="https://www.elevanceskills.com/certificates/6a96b3158a852cdc4300af40" target="_blank" rel="noopener noreferrer">
+                View Certificate →
               </a>
             </span>
           </div>

@@ -21,6 +21,7 @@ const EXPERIENCE = [
     period: 'Apr 2026 — Sep 2026',
     summary:
       'Building Twiller, a production-style social platform with scalable REST APIs, Firebase authentication, Razorpay payments, and security automation.',
+    certificateLink: 'https://www.elevanceskills.com/certificates/6a96b3158a852cdc4300af40',
     stack: ['Next.js', 'Express', 'MongoDB', 'Firebase', 'Razorpay'],
   },
   {
@@ -162,6 +163,13 @@ export default function Profile({ className }) {
                   <div className={`profile-exp-body ${isOpen ? 'is-open' : ''}`}>
                     <div className="profile-exp-inner">
                       <p className="profile-exp-summary">{item.summary}</p>
+                      {item.certificateLink && (
+                        <div style={{ marginTop: '10px', marginBottom: '14px' }}>
+                          <a href={item.certificateLink} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.85em', opacity: 0.7, textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: '1px' }}>
+                            View Certificate ↗
+                          </a>
+                        </div>
+                      )}
                       <div className="tags">
                         {item.stack.map((tech) => (
                           <span key={tech} className="tag">{tech}</span>
