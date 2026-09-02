@@ -47,7 +47,7 @@ export default function Experience() {
 
         <div className="experience-card" style={{ marginTop: '24px' }}>
           <h4>Full Stack Web Development Intern</h4>
-          <p className="experience-org">ElevanceSkills &nbsp;·&nbsp; Apr 2026 – Oct 2026 (6 Months)</p>
+          <p className="experience-org">ElevanceSkills &nbsp;·&nbsp; Apr 2026 — Sep 2026 (5 Months)</p>
 
           <ul className="experience-list">
             <li>Developing <strong>Twiller (X Clone)</strong>, a robust social platform featuring audio tweets, tiered subscriptions with Razorpay integration, and automated security workflows.</li>

@@ -17,7 +17,7 @@ const TIMELINE = [
     id: 'exp-01',
     type: 'work',
     year: '2026',
-    period: 'Apr 2026 — Present',
+    period: 'Apr 2026 — Sep 2026',
     title: 'Full Stack Web Development Intern',
     org: 'ElevanceSkills',
     location: 'Remote',

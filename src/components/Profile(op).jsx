@@ -18,7 +18,7 @@ const EXPERIENCE = [
     role: 'Full Stack Web Development Intern',
     org: 'ElevanceSkills',
     location: 'Remote',
-    period: 'Apr 2026 — Present',
+    period: 'Apr 2026 — Sep 2026',
     summary:
       'Building Twiller, a production-style social platform with scalable REST APIs, Firebase authentication, Razorpay payments, and security automation.',
     stack: ['Next.js', 'Express', 'MongoDB', 'Firebase', 'Razorpay'],
