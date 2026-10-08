@@ -303,10 +303,10 @@ add_bullet(doc, "Developed an NLP-powered mood detection engine that classifies 
 add_bullet(doc, "Integrated Spotify Web API for real-time music recommendations with an interactive experience")
 add_tech_line(doc, ["Python", "NLP", "Spotify API", "Streamlit"])
 
-add_entry_header(doc, "AI Attention Monitoring System", link_text="GitHub", link_url="https://github.com/Nishwanth2809/AI-Attention")
-add_bullet(doc, "Created a real-time attention tracker using computer vision with gaze detection, blink analysis, and head pose estimation")
-add_bullet(doc, "Computed live attention scores and session analytics via Flask backend with MediaPipe and OpenCV")
-add_tech_line(doc, ["OpenCV", "MediaPipe", "Flask", "React", "Python"])
+add_entry_header(doc, "Attn — AI Focus Coach", link_text="GitHub", link_url="https://github.com/Nishwanth2809/AI-Attention")
+add_bullet(doc, "Built a privacy-first personal focus coach using on-device MediaPipe Face Mesh for real-time gaze & head pose tracking")
+add_bullet(doc, "Engineered configurable automation rules with custom triggers, cooldowns, and private session reporting (CSV/JSON)")
+add_tech_line(doc, ["React 19", "MediaPipe", "Vite", "Cloudflare Workers", "JavaScript"])
 
 add_entry_header(doc, "Voice Chat AI Assistant")
 add_bullet(doc, "Built a voice-first AI assistant with real-time speech recognition, NLP, and synthesized responses")

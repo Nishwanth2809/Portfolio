@@ -1,207 +1,10 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
 import ScrollStack, { ScrollStackItem } from './ScrollStack/ScrollStack'
-
-const PROJECTS = [
-  {
-    num: '01',
-    title: 'Twiller — X Clone',
-    category: 'Full Stack',
-    role: 'Full Stack Lead & API Architect',
-    desc: 'Social platform with audio tweets, tiered subscriptions, Razorpay payments, and OTP-based security. Designed and integrated 15+ REST API endpoints.',
-    longDesc:
-      'A production-style social networking platform built to handle real-time interactions, audio tweet broadcasting, tiered paid subscriptions, and robust API security. Designed and integrated 15+ REST API endpoints with Express and MongoDB, incorporated Firebase Authentication for secure user sessions, and integrated Razorpay for automated recurring billing and payment verification.',
-    highlights: [
-      'Audio Tweet Recording & Real-Time Playback engine',
-      'Tiered Paid Subscription Plans via Razorpay Payment Gateway',
-      '15+ Secure REST APIs with rate limiting, input validation, and CORS security',
-      'OTP-based 2-Factor Security Authentication & Password Recovery',
-    ],
-    tags: ['Next.js', 'Express', 'MongoDB', 'Firebase', 'Razorpay', 'Tailwind'],
-    github: 'https://github.com/Nishwanth2809/twiller',
-    live: 'https://twiller-ruby.vercel.app/',
-  },
-  {
-    num: '02',
-    title: 'Brahmi Script Recognizer',
-    category: 'Computer Vision',
-    role: 'Computer Vision & ML Engineer',
-    desc: 'Recognizes ancient Brahmi characters from images and transliterates into Telugu, Tamil, and Devanagari with 94% accuracy.',
-    longDesc:
-      'An end-to-end computer vision and Deep Learning pipeline that scans images of ancient Brahmi inscriptions and accurately transliterates them into modern Indian scripts (Telugu, Tamil, and Devanagari). Trained a custom Convolutional Neural Network (CNN) with TensorFlow/Keras on segmented character datasets, achieving 94% character recognition accuracy despite weathered artifact noise.',
-    highlights: [
-      '94% Character Recognition Accuracy across ancient stone/manuscript scripts',
-      'OpenCV contour detection and adaptive thresholding for character segmentation',
-      'Transliteration engine mapping Brahmi phonetics to Telugu, Tamil & Devanagari',
-      'Interactive Web App built with Flask & React for image upload and real-time inference',
-    ],
-    tags: ['React', 'Flask', 'TensorFlow', 'Keras', 'OpenCV'],
-    github: 'https://github.com/Nishwanth2809/Brahmi-Script',
-    live: 'https://brahmi-script-evolution.vercel.app/',
-  },
-  {
-    num: '03',
-    title: 'Deepfake Detection System',
-    category: 'Deep Learning',
-    role: 'Deep Learning Systems Developer',
-    desc: 'Real-time deepfake detection pipeline using ResNet18 and OpenCV for frame-level analysis and media authenticity verification. 92% accuracy.',
-    longDesc:
-      'A real-time deepfake detection framework engineered to inspect video frames for facial manipulation, unnatural blending artifacts, and temporal inconsistencies. Leveraged a fine-tuned ResNet18 convolutional architecture trained on facial manipulation benchmark datasets, integrated with OpenCV for frame extraction and real-time video stream analysis at 92% detection accuracy.',
-    highlights: [
-      'ResNet18 Deep Convolutional Backbone fine-tuned for facial artifact detection',
-      'Frame-by-frame temporal analysis & facial landmark tracking with OpenCV',
-      'Real-time video processing pipeline capable of analyzing live camera streams',
-      '92% verification accuracy on deepfake detection benchmark datasets',
-    ],
-    tags: ['Python', 'OpenCV', 'ResNet18', 'PyTorch'],
-    github: 'https://github.com/Nishwanth2809/Deep-Fake-Detection',
-    live: null,
-  },
-  {
-    num: '04',
-    title: 'AI Medical Report Analyzer',
-    category: 'ML',
-    role: 'Full-Stack AI Engineer',
-    desc: 'Extracts medical data with OCR and transforms complex healthcare documents into readable, AI-generated summaries for faster comprehension.',
-    longDesc:
-      'An intelligent healthcare document intelligence application that transforms complex, dense medical lab reports and clinical documentation into structured, plain-language summaries. Integrates Tesseract OCR for text extraction from scanned PDFs/images and LLM NLP pipelines to categorize metrics, flag out-of-range lab results, and provide patient-friendly explanations.',
-    highlights: [
-      'Tesseract OCR engine for document digitization from multi-page PDFs & images',
-      'Automated lab result extraction & abnormal range detection',
-      'Natural Language Summarization converting medical terminology to clear insights',
-      'Privacy-conscious file handling with instant client-side preview',
-    ],
-    tags: ['React', 'Node.js', 'OCR', 'NLP'],
-    github: 'https://github.com/Nishwanth2809/AI-Medical-Report-Analyzer',
-    live: 'https://medical-report-analyzer-three.vercel.app/',
-  },
-  {
-    num: '05',
-    title: 'Moodify',
-    category: 'NLP',
-    role: 'ML & NLP Developer',
-    desc: 'NLP-powered recommendation engine that detects mood from text and maps it to curated Spotify playlists. Multilingual support including Telugu, Hindi, Tamil.',
-    longDesc:
-      'An NLP-driven music recommendation system that analyzes text input (journal entries, mood descriptions, or social posts) to detect emotional sentiment and automatically generate/map curated Spotify playlists. Built using fine-tuned sentiment classifiers with multilingual NLP support (including English, Telugu, Hindi, and Tamil), integrated with the Spotify Web API.',
-    highlights: [
-      'Multilingual sentiment analysis across English, Telugu, Hindi, and Tamil',
-      'Seamless integration with Spotify Web API for playlist generation',
-      'Streamlit web interface with real-time mood visualization',
-      'Dynamic valence & energy mapping to match music audio features',
-    ],
-    tags: ['Python', 'NLP', 'Spotify API', 'Streamlit'],
-    github: 'https://github.com/Nishwanth2809/Moodify-Let-Your-Mood-Choose-the-Music-',
-    live: 'https://moodstream-q4lr.onrender.com/',
-  },
-  {
-    num: '06',
-    title: 'AI Attention Monitor',
-    category: 'Computer Vision',
-    role: 'Computer Vision Developer',
-    desc: 'Tracks student engagement in remote learning via gaze detection, blink analysis, and head pose estimation. Real-time inference at 30 FPS.',
-    longDesc:
-      'A computer vision surveillance tool built to measure student engagement and attentiveness during remote learning sessions. Uses OpenCV and MediaPipe Face Mesh to perform 3D head pose estimation, eye gaze tracking, and blink frequency analysis in real-time at 30 FPS without GPU requirement.',
-    highlights: [
-      'MediaPipe 468-point 3D Face Mesh for high-precision landmark tracking',
-      'Real-time Eye Aspect Ratio (EAR) blink calculation & gaze direction mapping',
-      'Head pose estimation (yaw, pitch, roll) for alertness scoring',
-      'Low-overhead Python backend delivering 30 FPS CPU inference',
-    ],
-    tags: ['OpenCV', 'MediaPipe', 'Flask', 'React'],
-    github: 'https://github.com/Nishwanth2809/AI-Attention',
-    live: null,
-  },
-  {
-    num: '07',
-    title: 'Voice Chat AI Assistant',
-    category: 'AI / Speech',
-    role: 'Speech & AI Engineer',
-    desc: 'Low-latency conversational voice assistant using Whisper for speech recognition, Gemini API for responses, and gTTS for speech output.',
-    longDesc:
-      'A low-latency conversational voice AI assistant that enables hands-free voice interactions. Uses OpenAI’s Whisper model for speech-to-text transcription, Google’s Gemini API for context-aware conversational intelligence, and gTTS for audio response synthesis.',
-    highlights: [
-      'Offline/Online Whisper model integration for speech recognition',
-      'Multi-turn conversational memory with Gemini API',
-      'Real-time audio streaming with PyAudio & gTTS audio playback',
-      'Ultra-fast end-to-end voice query response loop',
-    ],
-    tags: ['Python', 'Whisper', 'Gemini API', 'PyAudio'],
-    github: 'https://github.com/Nishwanth2809/Voice-Chat-AI-Assistant',
-    live: null,
-  },
-  {
-    num: '08',
-    title: 'Local RAG System',
-    category: 'AI Systems',
-    role: 'AI Systems Engineer',
-    desc: 'Private document Q&A application running entirely offline using Ollama, Llama 3, and LangChain for retrieval-augmented generation.',
-    longDesc:
-      'A 100% private, offline Retrieval-Augmented Generation (RAG) system for querying confidential enterprise documents. Built using LangChain, ChromaDB vector storage, and local Llama 3 models served via Ollama, ensuring zero data leaves the local machine.',
-    highlights: [
-      'Completely local & offline document Q&A — no API keys required',
-      'High-performance vector embeddings with ChromaDB & LangChain',
-      'Runs Llama 3 / Mistral locally via Ollama inference engine',
-      'Streamlit chat UI with source document citation & page references',
-    ],
-    tags: ['LangChain', 'Ollama', 'ChromaDB', 'Streamlit'],
-    github: 'https://github.com/Nishwanth2809/Local-RAG-System',
-    live: null,
-  },
-  {
-    num: '09',
-    title: 'Sales & Revenue Analytics',
-    category: 'Data Analytics',
-    role: 'Data Analyst & BI Engineer',
-    desc: 'Interactive Power BI analytics dashboard analyzing sales performance, revenue trends, customer segments, and regional sales distribution.',
-    longDesc:
-      'A comprehensive Business Intelligence suite developed in Power BI to analyze enterprise sales performance, revenue growth drivers, customer lifetime value, and regional distribution across multiple fiscal quarters. Built custom DAX metrics and star-schema relational data models from SQL databases.',
-    highlights: [
-      'Star-schema relational data modeling with SQL & DAX calculations',
-      'Dynamic cohort analysis, regional revenue maps, and sales target tracking',
-      'Automated executive summary KPI cards & filter slicers',
-      'Data cleansing & ETL automation with Power Query',
-    ],
-    tags: ['Power BI', 'SQL', 'Data Modeling', 'DAX'],
-    github: 'https://github.com/Nishwanth2809/Sales-Analytics-Dashboard',
-    live: null,
-  },
-  {
-    num: '10',
-    title: 'IPL Analytics Dashboard',
-    category: 'Data Analytics',
-    role: 'Data Analyst & Tableau Developer',
-    desc: 'Tableau dashboard analyzing 16+ seasons of IPL cricket data — team performance, player statistics, venue insights, and match outcome predictors.',
-    longDesc:
-      'An extensive sports analytics dashboard analyzing 16+ seasons of Indian Premier League (IPL) cricket data (2008–2024). Features deep-dive metrics on team win probabilities, venue bias, economy rates, partnership stats, and player head-to-head performance.',
-    highlights: [
-      'Comprehensive analysis of 16+ seasons of IPL historical data',
-      'Dynamic venue, toss impact, and target defense/chase success metrics',
-      'Player head-to-head comparison tool & match outcome predictor',
-      'Published live on Tableau Public with 1000+ views',
-    ],
-    tags: ['Tableau', 'Python', 'Pandas', 'Data Viz'],
-    github: 'https://github.com/Nishwanth2809/IPL-Analytics-Tableau',
-    live: 'https://public.tableau.com/app/profile/nishwanth.yarra/viz/IPLAnalyticsDashboard2008-2024_17821134384020/Dashboard1',
-  },
-  {
-    num: '11',
-    title: 'RL Car Racing Autopilot',
-    category: 'Reinforcement Learning',
-    role: 'Reinforcement Learning Engineer',
-    desc: 'Trained a PPO agent in OpenAI Gym CarRacing-v2 environment achieving autonomous track navigation using continuous action spaces.',
-    longDesc:
-      'Trained an autonomous driving agent using Proximal Policy Optimization (PPO) in OpenAI Gym’s CarRacing-v2 continuous control environment. Processed pixel frame observations with a custom CNN encoder and tuned hyperparameters to achieve reliable track completion without off-track penalties.',
-    highlights: [
-      'PPO (Proximal Policy Optimization) reinforcement learning algorithm',
-      'Custom CNN feature extractor processing 96x96 pixel environment frames',
-      'Continuous control action space (steering, gas, braking)',
-      'Evaluation metrics tracking mean reward, lap time, and track completion rate',
-    ],
-    tags: ['PyTorch', 'Gymnasium', 'PPO', 'Stable-Baselines3'],
-    github: 'https://github.com/Nishwanth2809/AI-Car-Racing---PPO-Autopilot',
-    live: null,
-  },
-]
+import { CASE_STUDIES, getCaseStudyById } from '../data/caseStudies'
+import { PROJECTS } from '../data/projects'
+import CaseStudyModal from './CaseStudyModal'
 
 const GithubIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -218,10 +21,48 @@ const ExternalIcon = () => (
 )
 
 export default function Projects({ className }) {
+  const navigate = useNavigate()
   const [showAll, setShowAll] = useState(false)
+  const [filterMode, setFilterMode] = useState('all')
   const [activeModalProject, setActiveModalProject] = useState(null)
+  const [activeCaseStudyId, setActiveCaseStudyId] = useState(null)
 
-  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, 6)
+  const CASE_STUDY_IDS = new Set(CASE_STUDIES.map(s => s.id))
+
+  const getCaseStudySlug = (num) => {
+    const study = CASE_STUDIES.find(s => s.id === num)
+    return study ? study.slug : 'twiller'
+  }
+
+  const getCaseStudyTag = (num) => {
+    if (num === '01') return 'Full Stack · Case Study'
+    if (num === '02') return 'Automation · Case Study'
+    if (num === '03') return 'Computer Vision · Case Study'
+    return 'Case Study'
+  }
+
+  const getCaseStudyButtonText = (num) => {
+    if (num === '01') return 'Full Stack Case Study'
+    if (num === '02') return 'Automation Case Study'
+    if (num === '03') return 'Vision Case Study'
+    return 'Case Study'
+  }
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase()
+      if (hash.includes('twiller')) navigate('/case-study/twiller')
+      else if (hash.includes('attn')) navigate('/case-study/attn')
+      else if (hash.includes('brahmi')) navigate('/case-study/brahmi')
+    }
+    handleHash()
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [navigate])
+
+  const visibleProjects = filterMode === 'case-studies'
+    ? PROJECTS.filter(p => CASE_STUDY_IDS.has(p.num))
+    : (showAll ? PROJECTS : PROJECTS.slice(0, 6))
 
   const handleMouseMove = (e) => {
     const card = e.currentTarget
@@ -249,6 +90,23 @@ export default function Projects({ className }) {
         <p className="page-heading-tag">Portfolio</p>
         <h2 className="page-heading-title">Selected<br /><span className="dim">Work.</span></h2>
         <p className="page-heading-sub">End-to-end engineering · from models to full-stack products</p>
+
+        <div className="projects-filter-bar">
+          <button
+            type="button"
+            className={`projects-filter-pill ${filterMode === 'all' ? 'active' : ''}`}
+            onClick={() => setFilterMode('all')}
+          >
+            All Projects ({PROJECTS.length})
+          </button>
+          <button
+            type="button"
+            className={`projects-filter-pill ${filterMode === 'case-studies' ? 'active' : ''}`}
+            onClick={() => setFilterMode('case-studies')}
+          >
+            <span className="filter-star">✦</span> Featured Case Studies (Full Stack · Automation · Vision)
+          </button>
+        </div>
       </div>
 
       <div className="proj-grid">
@@ -283,6 +141,11 @@ export default function Projects({ className }) {
                   <div className="proj-header">
                     <span className="proj-num">{p.num}</span>
                     <span className="proj-category">{p.category}</span>
+                    {CASE_STUDY_IDS.has(p.num) && (
+                      <span className="case-study-badge">
+                        <span className="cs-badge-sparkle">✦</span> {getCaseStudyTag(p.num)}
+                      </span>
+                    )}
                   </div>
                   <p className="proj-title">{p.title}</p>
                   <p className="proj-desc">{p.desc}</p>
@@ -304,6 +167,22 @@ export default function Projects({ className }) {
                     <span>View Details</span>
                     <span className="details-arrow">→</span>
                   </button>
+
+                  {CASE_STUDY_IDS.has(p.num) && (
+                    <button
+                      type="button"
+                      className="proj-action-btn proj-action-btn--study"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/case-study/${getCaseStudySlug(p.num)}`)
+                      }}
+                      aria-label={`Open case study for ${p.title}`}
+                    >
+                      <span>{getCaseStudyButtonText(p.num)}</span>
+                      <span className="study-sparkle">↗</span>
+                    </button>
+                  )}
+
 
                   <div className="proj-actions-links">
                     <a
@@ -338,10 +217,12 @@ export default function Projects({ className }) {
         </ScrollStack>
       </div>
 
-      <button className="projects-toggle" type="button" onClick={() => setShowAll(value => !value)} aria-expanded={showAll}>
-        {showAll ? 'Show featured projects' : 'View all 11 projects'}
-        <span aria-hidden="true">{showAll ? '↑' : '↓'}</span>
-      </button>
+      {filterMode === 'all' && (
+        <button className="projects-toggle" type="button" onClick={() => setShowAll(value => !value)} aria-expanded={showAll}>
+          {showAll ? 'Show featured projects' : 'View all 11 projects'}
+          <span aria-hidden="true">{showAll ? '↑' : '↓'}</span>
+        </button>
+      )}
 
       {/* ── PROJECT DETAILS MODAL ── */}
       {activeModalProject && createPortal(
@@ -370,6 +251,11 @@ export default function Projects({ className }) {
               <div className="proj-modal-meta">
                 <span className="proj-num">{activeModalProject.num}</span>
                 <span className="proj-category">{activeModalProject.category}</span>
+                {CASE_STUDY_IDS.has(activeModalProject.num) && (
+                  <span className="case-study-badge">
+                    <span className="cs-badge-sparkle">✦</span> {getCaseStudyTag(activeModalProject.num)}
+                  </span>
+                )}
               </div>
               <h2 id="proj-modal-title" className="proj-modal-title">{activeModalProject.title}</h2>
               {activeModalProject.role && (
@@ -408,6 +294,19 @@ export default function Projects({ className }) {
             </div>
 
             <div className="proj-modal-footer">
+              {CASE_STUDY_IDS.has(activeModalProject.num) && (
+                <button
+                  type="button"
+                  className="btn btn-study"
+                  onClick={() => {
+                    navigate(`/case-study/${getCaseStudySlug(activeModalProject.num)}`)
+                    setActiveModalProject(null)
+                  }}
+                >
+                  <span>📖 Read {activeModalProject.num === '01' ? 'Full Stack' : activeModalProject.num === '02' ? 'Automation' : 'Vision'} Case Study</span>
+                </button>
+              )}
+
               <a
                 className="btn btn-solid"
                 href={activeModalProject.github}
@@ -432,6 +331,16 @@ export default function Projects({ className }) {
           </div>
         </div>,
         document.body
+      )}
+
+      {/* ── CASE STUDY MODAL ── */}
+      {activeCaseStudyId && (
+        <CaseStudyModal
+          study={getCaseStudyById(activeCaseStudyId)}
+          project={PROJECTS.find(p => p.num === activeCaseStudyId)}
+          onClose={() => setActiveCaseStudyId(null)}
+          onSelectStudy={(id) => setActiveCaseStudyId(id)}
+        />
       )}
     </div>
   )

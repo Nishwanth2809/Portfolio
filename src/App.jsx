@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Profile from './components/Profile'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
-import CustomCursor from './components/CustomCursor'
 import './App.css'
+
 
 const TABS = ['home', 'profile', 'projects', 'skills', 'contact']
 const SCROLL_DURATION_MS = 760
@@ -18,13 +19,28 @@ const DRAG_COMMIT_VELOCITY = 0.35
 const clampPage = (index) => Math.max(0, Math.min(index, TABS.length - 1))
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max))
 
+const getInitialActiveIndex = () => {
+  if (typeof window === 'undefined') return 0
+  const params = new URLSearchParams(window.location.search)
+  const tabParam = params.get('tab')
+  if (tabParam && TABS.includes(tabParam)) {
+    return TABS.indexOf(tabParam)
+  }
+  const hash = window.location.hash.replace('#', '').toLowerCase()
+  if (hash && TABS.includes(hash)) {
+    return TABS.indexOf(hash)
+  }
+  return 0
+}
+
 function App() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const navigate = useNavigate()
+  const [activeIndex, setActiveIndex] = useState(getInitialActiveIndex)
   const [wheelOffset, setWheelOffset] = useState(0)
   const [isWheeling, setIsWheeling] = useState(false)
   const [theme, setTheme] = useState('light')
   const viewportRef = useRef(null)
-  const activeIndexRef = useRef(0)
+  const activeIndexRef = useRef(getInitialActiveIndex())
   const wheelLockRef = useRef(false)
   const wheelIntentRef = useRef(0)
   const wheelIdleTimeoutRef = useRef(null)
@@ -68,6 +84,24 @@ function App() {
     activeIndexRef.current = nextIndex
     setActiveIndex(nextIndex)
   }, [])
+
+  useEffect(() => {
+    document.title = 'Nishwanth Yarra · Portfolio'
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase()
+      if (hash.includes('twiller')) {
+        navigate('/case-study/twiller')
+      } else if (hash.includes('attn')) {
+        navigate('/case-study/attn')
+      } else if (hash.includes('brahmi')) {
+        navigate('/case-study/brahmi')
+      }
+    }
+    handleHash()
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [navigate])
+
 
   const handleNavigate = (to) => {
     const index = TABS.indexOf(to)
@@ -286,8 +320,8 @@ function App() {
 
   return (
     <div className="viewport" data-theme={theme} ref={viewportRef}>
-      <CustomCursor />
       <div
+
         className={`page-track ${isWheeling ? 'page-track--wheel' : ''}`}
         style={{
           '--active-offset': `${activeIndex * -100}vw`,

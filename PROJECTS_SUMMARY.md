@@ -38,11 +38,12 @@ This document contains a summary of all projects featured in the portfolio, incl
 - **Skills:** NLP, Python, NLP, Spotify API, Streamlit
 - **Live Demo:** [https://moodstream-q4lr.onrender.com/](https://moodstream-q4lr.onrender.com/)
 
-## 6. AI Attention Monitoring System
-**Description:** Computer vision attention tracker using gaze detection, blink analysis, and head pose estimation with live scores and session analytics.
-- **Problem:** Remote learning lacks tools to measure student engagement in real time.
-- **Metric:** Real-time inference at 30 FPS.
-- **Skills:** Computer Vision, OpenCV, MediaPipe, Flask, React
+## 6. Attn — AI Focus Coach
+**Description:** Browser-first personal focus coach powered by on-device computer vision, configurable automation rules, and private session analytics.
+- **Problem:** Maintaining deep focus without intrusive server tracking, accounts, or paid surveillance tools.
+- **Metric:** 100% on-device private processing with real-time MediaPipe facial cue tracking.
+- **Skills:** React 19, MediaPipe, Vite, Cloudflare Workers, JavaScript
+- **Live Demo:** [https://ai-attention.nishwanthyarra.workers.dev/](https://ai-attention.nishwanthyarra.workers.dev/)
 
 ## 7. Voice Chat AI Assistant
 **Description:** Voice-first AI assistant with real-time speech recognition, NLP processing, synthesized responses, and a low-latency FastAPI response loop.

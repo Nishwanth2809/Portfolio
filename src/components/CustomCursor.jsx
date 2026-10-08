@@ -6,9 +6,17 @@ export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    const handlePointerMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY })
+    const updatePosition = (clientX, clientY) => {
+      setPosition({ x: clientX, y: clientY })
       setIsHidden(false)
+    }
+
+    const handlePointerMove = (e) => {
+      updatePosition(e.clientX, e.clientY)
+    }
+
+    const handleMouseMove = (e) => {
+      updatePosition(e.clientX, e.clientY)
     }
 
     const handlePointerLeave = () => {
@@ -19,7 +27,8 @@ export default function CustomCursor() {
       setIsHidden(false)
     }
 
-    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     document.addEventListener('pointerleave', handlePointerLeave)
     document.addEventListener('pointerenter', handlePointerEnter)
 
@@ -32,20 +41,31 @@ export default function CustomCursor() {
         target.tagName === 'BUTTON' ||
         target.closest('a') ||
         target.closest('button') ||
-        target.classList.contains('clickable') ||
+        target.closest('[role="button"]') ||
+        target.closest('.clickable') ||
+        target.closest('.cs-back-btn') ||
+        target.closest('.cs-nav-tab-pill') ||
+        target.closest('.cs-theme-btn') ||
+        target.closest('.cs-action-btn') ||
+        target.closest('.cs-bottom-nav-card') ||
+        target.closest('.cs-index-card') ||
+        target.closest('.proj-card') ||
+        target.closest('.nav-btn') ||
         target.style.cursor === 'pointer'
 
       setIsHovered(!!isClickable)
     }
 
-    window.addEventListener('mouseover', handleMouseOver)
+    window.addEventListener('mouseover', handleMouseOver, { passive: true })
 
     return () => {
       window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('pointerleave', handlePointerLeave)
       document.removeEventListener('pointerenter', handlePointerEnter)
       window.removeEventListener('mouseover', handleMouseOver)
     }
+
   }, [])
 
   if (isHidden) return null

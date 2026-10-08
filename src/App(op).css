@@ -893,10 +893,11 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #35d07f;
-  box-shadow: 0 0 0 3px rgba(53, 208, 127, 0.18);
+  background: var(--fg);
+  box-shadow: 0 0 0 3px var(--border-22);
   flex-shrink: 0;
 }
+
 
 .profile-resume-btn {
   font-size: 12px;
