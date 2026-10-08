@@ -34,20 +34,6 @@ export default function Projects({ className }) {
     return study ? study.slug : 'twiller'
   }
 
-  const getCaseStudyTag = (num) => {
-    if (num === '01') return 'Full Stack · Case Study'
-    if (num === '02') return 'Automation · Case Study'
-    if (num === '03') return 'Computer Vision · Case Study'
-    return 'Case Study'
-  }
-
-  const getCaseStudyButtonText = (num) => {
-    if (num === '01') return 'Full Stack Case Study'
-    if (num === '02') return 'Automation Case Study'
-    if (num === '03') return 'Vision Case Study'
-    return 'Case Study'
-  }
-
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.toLowerCase()
@@ -104,7 +90,7 @@ export default function Projects({ className }) {
             className={`projects-filter-pill ${filterMode === 'case-studies' ? 'active' : ''}`}
             onClick={() => setFilterMode('case-studies')}
           >
-            <span className="filter-star">✦</span> Featured Case Studies (Full Stack · Automation · Vision)
+            <span className="filter-star">✦</span> Featured Case Studies
           </button>
         </div>
       </div>
@@ -140,11 +126,12 @@ export default function Projects({ className }) {
                 <div className="proj-card-inner">
                   <div className="proj-header">
                     <span className="proj-num">{p.num}</span>
-                    <span className="proj-category">{p.category}</span>
-                    {CASE_STUDY_IDS.has(p.num) && (
+                    {CASE_STUDY_IDS.has(p.num) ? (
                       <span className="case-study-badge">
-                        <span className="cs-badge-sparkle">✦</span> {getCaseStudyTag(p.num)}
+                        <span className="cs-badge-sparkle">✦</span> Case Study
                       </span>
+                    ) : (
+                      <span className="proj-category">{p.category}</span>
                     )}
                   </div>
                   <p className="proj-title">{p.title}</p>
@@ -178,7 +165,7 @@ export default function Projects({ className }) {
                       }}
                       aria-label={`Open case study for ${p.title}`}
                     >
-                      <span>{getCaseStudyButtonText(p.num)}</span>
+                      <span>Case Study</span>
                       <span className="study-sparkle">↗</span>
                     </button>
                   )}
@@ -250,11 +237,12 @@ export default function Projects({ className }) {
             <div className="proj-modal-header">
               <div className="proj-modal-meta">
                 <span className="proj-num">{activeModalProject.num}</span>
-                <span className="proj-category">{activeModalProject.category}</span>
-                {CASE_STUDY_IDS.has(activeModalProject.num) && (
+                {CASE_STUDY_IDS.has(activeModalProject.num) ? (
                   <span className="case-study-badge">
-                    <span className="cs-badge-sparkle">✦</span> {getCaseStudyTag(activeModalProject.num)}
+                    <span className="cs-badge-sparkle">✦</span> Case Study
                   </span>
+                ) : (
+                  <span className="proj-category">{activeModalProject.category}</span>
                 )}
               </div>
               <h2 id="proj-modal-title" className="proj-modal-title">{activeModalProject.title}</h2>
@@ -303,7 +291,7 @@ export default function Projects({ className }) {
                     setActiveModalProject(null)
                   }}
                 >
-                  <span>📖 Read {activeModalProject.num === '01' ? 'Full Stack' : activeModalProject.num === '02' ? 'Automation' : 'Vision'} Case Study</span>
+                  <span>📖 Read Case Study</span>
                 </button>
               )}
 

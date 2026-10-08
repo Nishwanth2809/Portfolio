@@ -547,7 +547,14 @@
   padding: 38px 0;
   border-top: 1px solid var(--border-16);
   align-items: flex-start;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.22s ease, padding 0.22s ease;
+  border-radius: 8px;
+}
+
+.cs-spec-row:hover {
+  background: var(--surface-04);
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 .cs-spec-label {
@@ -619,13 +626,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-bottom-nav-card:hover {
   background: var(--surface-08);
-  border-color: var(--border-22);
-  transform: translateY(-2px);
+  border-color: var(--fg);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
 }
 
 .cs-bottom-nav-dir {
@@ -818,13 +826,18 @@
 
 .cs-hub-card:hover {
   background: var(--surface-08);
-  border-color: var(--border-22);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  border-color: var(--fg);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
 }
 
 .cs-hub-card-icon {
   font-size: 22px;
+  transition: transform 0.25s ease;
+}
+
+.cs-hub-card:hover .cs-hub-card-icon {
+  transform: scale(1.15) rotate(-3deg);
 }
 
 .cs-hub-card-title {
@@ -849,6 +862,11 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.cs-hub-card:hover .cs-hub-card-link {
+  transform: translateX(4px);
 }
 
 /* ── Responsive Rules ── */

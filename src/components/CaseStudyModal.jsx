@@ -55,9 +55,8 @@ export default function CaseStudyModal({ study, project, onClose, onSelectStudy 
         <div className="case-study-header">
           <div className="case-study-kicker">
             <span className="case-study-kicker-badge">
-              {study.discipline ? `${study.discipline.toUpperCase()} CASE STUDY` : 'DEEP DIVE CASE STUDY'}
+              CASE STUDY
             </span>
-            {project?.category && <span className="case-study-category">{project.category}</span>}
           </div>
 
           <h2 id="cs-title" className="case-study-title">

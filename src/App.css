@@ -334,7 +334,7 @@ html, body, #root {
   padding: 0;
   margin-bottom: 28px;
   min-height: 230px;
-  transition: border-color 0.3s, background-color 0.3s, box-shadow .3s;
+  transition: border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -363,10 +363,17 @@ html, body, #root {
 .proj-card:hover {
   background: var(--bg);
   border-color: var(--card-hover-border);
-  box-shadow: 0 -8px 32px color-mix(in srgb, var(--bg) 82%, transparent), 0 24px 52px rgba(0,0,0,.13);
+  transform: translateY(-5px);
+  box-shadow: 0 -8px 32px color-mix(in srgb, var(--bg) 82%, transparent), 0 28px 58px rgba(0,0,0,.18);
 }
 .proj-card:hover::before {
   opacity: 1;
+}
+.proj-card:hover .proj-title {
+  color: var(--fg);
+}
+.proj-card:hover .proj-num {
+  color: var(--fg-72);
 }
 
 /* Card inner (content area) */
@@ -389,6 +396,7 @@ html, body, #root {
   font-size: 10px;
   color: var(--proj-num-fg);
   letter-spacing: .12em;
+  transition: color 0.2s ease;
 }
 .proj-category {
   font-size: 9px;
@@ -399,12 +407,18 @@ html, body, #root {
   border: .5px solid var(--border);
   padding: 2px 8px;
   border-radius: 100px;
+  transition: all 0.2s ease;
+}
+.proj-card:hover .proj-category {
+  color: var(--fg-48);
+  border-color: var(--border-22);
 }
 .proj-title {
   font-size: 19px;
   font-weight: 500;
   color: var(--proj-title-fg);
   margin-bottom: 7px;
+  transition: color 0.2s ease;
 }
 .proj-desc {
   font-size: 13px;
@@ -420,6 +434,15 @@ html, body, #root {
   background: var(--tag-bg);
   color: var(--tag-fg);
   border: .5px solid var(--border);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+.tag:hover {
+  transform: translateY(-1.5px);
+  background: var(--surface-10);
+  border-color: var(--border-22);
+  color: var(--fg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* Card action bar */
@@ -444,7 +467,7 @@ html, body, #root {
   color: var(--fg-42);
   background: var(--surface-06);
   border: .5px solid var(--border);
-  transition: background .18s, color .18s, border-color .18s;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   font-family: 'Inter', sans-serif;
 }
@@ -452,6 +475,8 @@ html, body, #root {
   background: var(--surface-10);
   color: var(--fg);
   border-color: var(--border-22);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
 }
 .proj-action-btn--live {
   color: var(--fg-72);
@@ -748,7 +773,8 @@ html, body, #root {
 .skill-card:hover {
   background: var(--card-hover-bg);
   border-color: var(--card-hover-border);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
 }
 
 .skill-card-head {
@@ -769,6 +795,14 @@ html, body, #root {
   background: var(--surface-06);
   border: .5px solid var(--border);
   font-size: 16px;
+  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-card:hover .skill-card-icon {
+  transform: scale(1.12) rotate(-4deg);
+  border-color: var(--border-22);
+  color: var(--fg);
+  background: var(--surface-10);
 }
 
 .skill-card-title {
@@ -800,6 +834,16 @@ html, body, #root {
   border: .5px solid var(--border);
   border-radius: 100px;
   padding: 6px 10px;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.skill-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: var(--surface-10);
+  border-color: var(--border-22);
+  color: var(--fg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
 }
 
 .skill-secondary {
@@ -823,13 +867,19 @@ html, body, #root {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 0;
+  padding: 16px 14px;
+  margin: 0 -14px;
+  border-radius: 12px;
   border-bottom: .5px solid var(--c-row-border);
   text-decoration: none;
   color: inherit;
-  transition: background .15s;
+  transition: all .22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .c-row:first-child { border-top: .5px solid var(--c-row-border); }
+.c-row:hover {
+  background: var(--surface-06);
+  transform: translateX(4px);
+}
 .c-row:hover .c-val { color: var(--fg); }
 .c-icon {
   width: 40px;
@@ -841,11 +891,27 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all .22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.c-row:hover .c-icon {
+  transform: scale(1.1) rotate(-3deg);
+  background: var(--surface-10);
+  border-color: var(--border-22);
 }
 .c-icon svg { width: 18px; height: 18px; stroke: var(--c-icon-stroke); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .c-label { font-size: 10px; color: var(--c-label-fg); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 3px; }
 .c-val { font-size: 14px; color: var(--c-val-fg); transition: color .15s; }
-.c-arrow { margin-left: auto; font-size: 18px; color: var(--c-arrow-fg); }
+.c-arrow {
+  margin-left: auto;
+  font-size: 18px;
+  color: var(--c-arrow-fg);
+  transition: all .22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+.c-row:hover .c-arrow {
+  transform: translateX(6px);
+  color: var(--fg);
+}
 
 /* ── GLASS NAV BAR ── */
 .glass-nav {
@@ -901,10 +967,17 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   color: var(--nav-btn-fg);
-  transition: color .2s;
+  transition: color .2s, transform .2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+}
+.nav-btn:hover {
+  color: var(--fg);
+  transform: translateY(-2px) scale(1.08);
+}
+.nav-btn:active {
+  transform: scale(0.95);
 }
 .nav-btn svg {
   width: 22px;
@@ -1565,8 +1638,14 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
 
 .projects-filter-pill:hover {
   background: var(--surface-10);
-  color: var(--fg-72);
+  color: var(--fg);
   border-color: var(--border-22);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.projects-filter-pill:hover .filter-star {
+  transform: rotate(45deg);
 }
 
 .projects-filter-pill.active {
@@ -1579,6 +1658,8 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
 
 .filter-star {
   color: var(--fg-72);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
 }
 
 .projects-filter-pill.active .filter-star {
@@ -1590,7 +1671,7 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
   font-size: 10px;
   font-weight: 600;
@@ -1599,6 +1680,15 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
   background: var(--surface-08);
   color: var(--fg);
   border: 1px solid var(--border-22);
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.case-study-badge:hover,
+.proj-card:hover .case-study-badge {
+  background: var(--surface-10);
+  border-color: var(--fg);
+  transform: scale(1.05);
 }
 
 [data-theme="light"] .case-study-badge {
@@ -1623,6 +1713,7 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
   background: var(--surface-06) !important;
   gap: 6px !important;
   font-weight: 600 !important;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 [data-theme="light"] .proj-action-btn--study {
@@ -1634,11 +1725,18 @@ body:not(.is-dragging) .nav-btn:hover .nav-tooltip {
 .proj-action-btn--study:hover {
   background: var(--surface-10) !important;
   border-color: var(--fg) !important;
-  transform: translateY(-1px);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22) !important;
 }
 
 .study-sparkle {
   font-size: 11px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.proj-action-btn--study:hover .study-sparkle {
+  transform: translate(2px, -2px) scale(1.2);
 }
 
 .btn-study {

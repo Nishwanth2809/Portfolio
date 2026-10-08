@@ -206,9 +206,8 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
           <div className="cs-hero-kicker">
             <span className="cs-kicker-badge">
               <span className="cs-kicker-num">0{study.id}</span>
-              <span>{study.discipline ? `${study.discipline.toUpperCase()} CASE STUDY` : 'DEEP DIVE CASE STUDY'}</span>
+              <span>CASE STUDY</span>
             </span>
-            {project?.category && <span className="case-study-category">{project.category}</span>}
           </div>
 
           <h1 id="cs-title" className="cs-hero-title">
@@ -426,13 +425,11 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
           <Link to={`/case-study/${prevStudy.slug}`} className="cs-bottom-nav-card">
             <span className="cs-bottom-nav-dir">← Previous Case Study</span>
             <span className="cs-bottom-nav-name">{prevStudy.name}</span>
-            <span className="cs-bottom-nav-meta">{prevStudy.discipline}</span>
           </Link>
 
           <Link to={`/case-study/${nextStudy.slug}`} className="cs-bottom-nav-card" style={{ textAlign: 'right' }}>
             <span className="cs-bottom-nav-dir" style={{ justifyContent: 'flex-end' }}>Next Case Study →</span>
             <span className="cs-bottom-nav-name">{nextStudy.name}</span>
-            <span className="cs-bottom-nav-meta">{nextStudy.discipline}</span>
           </Link>
         </nav>
 

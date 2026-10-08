@@ -83,9 +83,8 @@ export default function CaseStudiesIndex({ initialTheme = 'light' }) {
                 <div className="cs-index-card-top">
                   <div className="cs-kicker-badge">
                     <span className="cs-kicker-num">0{study.id}</span>
-                    <span>{study.discipline.toUpperCase()}</span>
+                    <span>CASE STUDY</span>
                   </div>
-                  {project?.category && <span className="case-study-category">{project.category}</span>}
                 </div>
 
                 <div>
