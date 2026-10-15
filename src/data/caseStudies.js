@@ -4,32 +4,32 @@ export const CASE_STUDIES = [
     slug: 'twiller',
     name: 'Twiller',
     discipline: 'Full Stack',
-    headline: 'A social platform, beyond the timeline.',
-    summary: 'Audio posts, account security, and paid subscriptions connected through a full-stack web application.',
+    headline: 'A social feed you can shape.',
+    summary: 'Topic discovery, community circles, and configurable feed rules bring more control to an X-inspired social platform.',
     steps: [
-      'Next.js interface',
-      'Express APIs',
-      'MongoDB storage',
+      'Next.js + TypeScript',
+      'Firebase sessions',
+      'Express services',
+      'MongoDB + media storage',
     ],
-    output: 'Firebase authentication · Razorpay payments',
+    output: 'Four feed modes · Six feed rules · Verified plan purchases',
     overview:
-      'Twiller is an X-style social application with audio tweets, tiered paid subscriptions, and OTP-based account security. It combines the user-facing social experience with API and payment integration work.',
+      'Twiller combines familiar social interactions with explicit control over discovery. Users publish text, images, and audio, reply in threads, follow people and topics, join community circles, and save bookmarks. Four feed modes and six configurable rules let them narrow or reprioritize what they see. Messaging, paid plans, and admin moderation complete the application.',
     contribution:
-      'I designed and integrated REST endpoints, connected authentication and payment services, and worked on the full-stack application during my ElevanceSkills internship.',
+      'My full-stack work spans the Next.js interface, Express REST APIs, MongoDB data models, and Firebase and Razorpay integrations. The current implementation extends the social experience with topic and circle discovery, configurable feed behavior, and a conversation-insight prototype.',
     problem:
-      'A social application needs more than a feed. Posting audio, identifying users, recovering accounts, and verifying payments each introduce a different boundary between the interface and backend services.',
+      'A single timeline gives users limited control over the conversations they encounter. Twiller adds separate views for followed people, topics, and communities, then lets users hide media or topics, boost or reduce topics, and prioritize a circle. Those choices must work alongside pagination, account permissions, media uploads, and paid posting quotas.',
     architecture:
-      'The documented stack is Next.js for the interface, Express for REST APIs, and MongoDB for storage. Firebase Authentication manages user sessions, while Razorpay provides subscription billing and payment verification.',
+      'A Next.js 15 and React 19 frontend calls an Express 5 API backed by MongoDB and Mongoose. Firebase ID tokens and backend login-session checks establish identity. Separate operation modules handle feeds, topics, circles, posts, and notifications. Media uploads pass through backend validation and filesystem storage. Razorpay orders are verified server-side before a database transaction activates a paid plan.',
     challenges:
-      'The implementation brings audio recording and playback together with authentication, subscriptions, and account recovery. The available records do not include production incident reports or load-test results.',
+      'Feed rules can change both eligibility and ordering, making pagination more complex than a timestamp alone. Weighted feeds use score-aware cursors and a fingerprint of the active mode and rules. Payment retries present a second consistency problem: order ownership, signatures, settlement, and prior fulfillment must be checked before changing plan access.',
     decisions:
-      'The API layer includes input validation, rate limiting, and CORS configuration. Account flows include OTP-based verification and password recovery. Firebase and Razorpay are the documented choices for authentication and payments.',
+      'Feed customization uses explicit filters and deterministic ranking weights. Rules can last an hour, until midnight UTC, seven days, or until removal. Paid access uses verified 30-day purchases with transactional fulfillment and replay checks. Messaging refreshes through polling. Conversation insights use bounded reply traversal, source references, caching, and generation limits, with a mock provider behind a replaceable interface.',
     results:
-      'The project records 15+ REST API endpoints, audio tweet recording and playback, tiered subscriptions, and OTP security flows. A public demonstration and source repository are available.',
+      'The inspected implementation connects four feed modes and six rule types to the interface and API, alongside topic follows, circle membership, audio posts, threaded replies, bookmarks, messaging, and admin moderation. Free, Bronze, Silver, and Gold plans apply server-side posting quotas. The repository includes tests for feed ranking, permissions, payments, media, and conversation insights; these are implementation evidence, not production performance measurements.',
     limitation:
-      'This is a production-style portfolio project. Deployment availability does not establish production scale, user adoption, or payment-system reliability; those outcomes have not been documented here.',
-    evidence: 'Based on the project and internship records maintained in this portfolio.',
-    screenshot: '/projects/twiller.png',
+      'Conversation insights currently use a deterministic mock provider, so they do not demonstrate live LLM analysis. Messaging uses polling, and paid plans are individual 30-day purchases rather than automatic recurring billing. This review inspected local source; live feature parity, user adoption, and load performance were not verified.',
+    screenshot: '/projects/twiller-current.png',
   },
   {
     id: '02',
@@ -61,7 +61,6 @@ export const CASE_STUDIES = [
       'The deployed application supports four configurable automation rules, local session reports, export downloads, and a camera-free demonstration. No camera pixels, landmarks, or reports are sent to an application backend.',
     limitation:
       'The attention signal is a visual heuristic, not a measurement of thoughts or productivity. Coaching requires an active session tab. An unfinished session is held in memory and is lost on refresh; completed reports depend on the browser’s local storage.',
-    evidence: 'Based on the Attn architecture documentation and the project records in this portfolio.',
     screenshot: '/projects/attn.png',
   },
   {
@@ -94,7 +93,6 @@ export const CASE_STUDIES = [
       'The repository description reports 94% character-recognition accuracy. The dataset size, evaluation split, and per-character results are not documented here, so that figure should be read as a reported result rather than an independently validated benchmark.',
     limitation:
       'Character recognition and phonetic transliteration are not the same as translating the meaning of an inscription. Broader validation on varied inscriptions remains unverified in the available material.',
-    evidence: 'Based on the project descriptions and technology records maintained in this portfolio.',
     screenshot: null,
   },
 ]

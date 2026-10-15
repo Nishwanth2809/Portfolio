@@ -1,20 +1,20 @@
 export const PROJECTS = [
   {
     num: '01',
-    title: 'Twiller — X Clone',
+    title: 'Twiller — Social Platform',
     slug: 'twiller',
     category: 'Full Stack',
     role: 'Full Stack Lead & API Architect',
-    desc: 'Social platform with audio tweets, tiered subscriptions, Razorpay payments, and OTP-based security. Designed and integrated 15+ REST API endpoints.',
+    desc: 'Full-stack social platform with topic and community feeds, six configurable feed rules, audio posts, messaging, and verified Razorpay plan purchases.',
     longDesc:
-      'A production-style social networking platform built to handle real-time interactions, audio tweet broadcasting, tiered paid subscriptions, and robust API security. Designed and integrated 15+ REST API endpoints with Express and MongoDB, incorporated Firebase Authentication for secure user sessions, and integrated Razorpay for automated recurring billing and payment verification.',
+      'An X-inspired social platform built with Next.js 15, React 19, TypeScript, Express 5, and MongoDB. Users can publish text, images, and audio; join community circles; follow topics; and shape four feed modes with six filtering and ranking rules. Firebase-backed sessions protect account actions, while Razorpay order verification grants 30-day paid plans. The application also includes threaded replies, bookmarks, polling-based messaging, admin moderation, and a conversation-insight prototype backed by a mock provider.',
     highlights: [
-      'Audio Tweet Recording & Real-Time Playback engine',
-      'Tiered Paid Subscription Plans via Razorpay Payment Gateway',
-      '15+ Secure REST APIs with rate limiting, input validation, and CORS security',
-      'OTP-based 2-Factor Security Authentication & Password Recovery',
+      'Four feed modes: For You, Following, Topics, and Circles',
+      'Six feed rules with expiry controls and score-aware cursor pagination',
+      'Audio posts, threaded replies, bookmarks, and polling-based messaging',
+      'Firebase session checks and transaction-backed Razorpay plan activation',
     ],
-    tags: ['Next.js', 'Express', 'MongoDB', 'Firebase', 'Razorpay', 'Tailwind'],
+    tags: ['Next.js', 'TypeScript', 'Express', 'MongoDB', 'Firebase', 'Razorpay', 'Tailwind'],
     github: 'https://github.com/Nishwanth2809/twiller',
     live: 'https://twiller-ruby.vercel.app/',
   },

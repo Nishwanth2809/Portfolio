@@ -239,12 +239,6 @@ export default function CaseStudyModal({ study, project, onClose, onSelectStudy 
             </div>
           )}
 
-          {study.evidence && (
-            <div className="cs-evidence-box">
-              <span className="cs-evidence-icon">ℹ</span>
-              <span>{study.evidence}</span>
-            </div>
-          )}
         </div>
 
         {/* Footer with Next / Prev study navigation */}

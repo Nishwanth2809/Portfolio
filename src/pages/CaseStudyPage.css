@@ -832,7 +832,9 @@
 }
 
 .cs-hub-card-icon {
-  font-size: 22px;
+  display: block;
+  flex-shrink: 0;
+  color: var(--fg);
   transition: transform 0.25s ease;
 }
 

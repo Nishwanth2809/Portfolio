@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { CASE_STUDIES, getCaseStudyBySlugOrId } from '../data/caseStudies'
 import { getProjectByNum, getProjectBySlug } from '../data/projects'
 import Navbar from '../components/Navbar'
+import PortfolioHubIcon from '../components/PortfolioHubIcon'
 import './CaseStudyPage.css'
 
 const GithubIcon = () => (
@@ -111,10 +112,10 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
   const getMetrics = () => {
     if (study.slug === 'twiller') {
       return [
-        { label: 'API Endpoints', value: '15+', desc: 'REST endpoints with rate limiting & CORS' },
-        { label: 'Audio Engine', value: 'Real-Time', desc: 'Audio tweet recording & playback engine' },
-        { label: 'Monetization', value: 'Razorpay', desc: 'Tiered paid subscription billing integration' },
-        { label: 'Security', value: 'OTP 2FA', desc: 'Firebase Auth & 2-factor account recovery' },
+        { label: 'Feed Modes', value: '4', desc: 'For You, Following, Topics, and Circles' },
+        { label: 'Feed Rules', value: '6', desc: 'Filtering and ranking with expiry controls' },
+        { label: 'Paid Access', value: '30 Days', desc: 'Verified Razorpay purchases with posting quotas' },
+        { label: 'Authentication', value: 'Firebase', desc: 'ID token verification and backend session checks' },
       ]
     }
     if (study.slug === 'attn') {
@@ -293,7 +294,7 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
               loading="eager"
             />
             <div className="cs-media-caption">
-              <span>{study.name} operational workflow and interface architecture</span>
+              <span>{study.name} application preview</span>
               {project?.live && (
                 <a href={project.live} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--fg)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
                   Interactive Demo ↗
@@ -412,13 +413,6 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
         </div>
 
 
-        {/* Evidence Verification Note */}
-        {study.evidence && (
-          <div className="cs-evidence-callout">
-            <span className="cs-evidence-icon">ℹ</span>
-            <span>{study.evidence}</span>
-          </div>
-        )}
 
         {/* ── BOTTOM PREV / NEXT STUDY NAVIGATION ── */}
         <nav className="cs-bottom-nav" aria-label="Case study navigation">
@@ -443,21 +437,21 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
 
           <div className="cs-hub-grid">
             <div className="cs-hub-card" onClick={() => handleNavNavigate('projects')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('projects')}>
-              <span className="cs-hub-card-icon">⚡</span>
+              <PortfolioHubIcon type="projects" />
               <h3 className="cs-hub-card-title">All 11 Projects</h3>
               <p className="cs-hub-card-desc">Deep Learning, NLP, Automation, Computer Vision, and Full Stack applications.</p>
               <span className="cs-hub-card-link">View Selected Work →</span>
             </div>
 
             <div className="cs-hub-card" onClick={() => handleNavNavigate('skills')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('skills')}>
-              <span className="cs-hub-card-icon">🛠️</span>
+              <PortfolioHubIcon type="skills" />
               <h3 className="cs-hub-card-title">Skills &amp; Tech Stack</h3>
               <p className="cs-hub-card-desc">React, Next.js, Express, PyTorch, MediaPipe, OpenCV, SQL, and Power BI.</p>
               <span className="cs-hub-card-link">View Skills →</span>
             </div>
 
             <div className="cs-hub-card" onClick={() => handleNavNavigate('contact')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('contact')}>
-              <span className="cs-hub-card-icon">📬</span>
+              <PortfolioHubIcon type="contact" />
               <h3 className="cs-hub-card-title">Get In Touch</h3>
               <p className="cs-hub-card-desc">Open for software engineering, full-stack, and machine learning opportunities.</p>
               <span className="cs-hub-card-link">Contact Nishwanth →</span>

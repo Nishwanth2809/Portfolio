@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { CASE_STUDIES } from '../data/caseStudies'
 import { getProjectBySlug, getProjectByNum } from '../data/projects'
 import Navbar from '../components/Navbar'
+import PortfolioHubIcon from '../components/PortfolioHubIcon'
 import './CaseStudyPage.css'
 
 const ArrowLeftIcon = () => (
@@ -139,21 +140,21 @@ export default function CaseStudiesIndex({ initialTheme = 'light' }) {
 
           <div className="cs-hub-grid">
             <div className="cs-hub-card" onClick={() => handleNavNavigate('projects')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('projects')}>
-              <span className="cs-hub-card-icon">⚡</span>
+              <PortfolioHubIcon type="projects" />
               <h3 className="cs-hub-card-title">All 11 Projects</h3>
               <p className="cs-hub-card-desc">Deep Learning, NLP, Automation, Computer Vision, and Full Stack applications.</p>
               <span className="cs-hub-card-link">View Selected Work →</span>
             </div>
 
             <div className="cs-hub-card" onClick={() => handleNavNavigate('skills')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('skills')}>
-              <span className="cs-hub-card-icon">🛠️</span>
+              <PortfolioHubIcon type="skills" />
               <h3 className="cs-hub-card-title">Skills &amp; Tech Stack</h3>
               <p className="cs-hub-card-desc">React, Next.js, Express, PyTorch, MediaPipe, OpenCV, SQL, and Power BI.</p>
               <span className="cs-hub-card-link">View Skills →</span>
             </div>
 
             <div className="cs-hub-card" onClick={() => handleNavNavigate('contact')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('contact')}>
-              <span className="cs-hub-card-icon">📬</span>
+              <PortfolioHubIcon type="contact" />
               <h3 className="cs-hub-card-title">Get In Touch</h3>
               <p className="cs-hub-card-desc">Open for software engineering, full-stack, and machine learning opportunities.</p>
               <span className="cs-hub-card-link">Contact Nishwanth →</span>
