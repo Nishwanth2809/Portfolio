@@ -436,26 +436,26 @@ export default function CaseStudyPage({ theme: initialTheme, onToggleTheme }) {
           </div>
 
           <div className="cs-hub-grid">
-            <div className="cs-hub-card" onClick={() => handleNavNavigate('projects')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('projects')}>
+            <Link className="cs-hub-card" to="/?tab=projects">
               <PortfolioHubIcon type="projects" />
               <h3 className="cs-hub-card-title">All 11 Projects</h3>
               <p className="cs-hub-card-desc">Deep Learning, NLP, Automation, Computer Vision, and Full Stack applications.</p>
               <span className="cs-hub-card-link">View Selected Work →</span>
-            </div>
+            </Link>
 
-            <div className="cs-hub-card" onClick={() => handleNavNavigate('skills')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('skills')}>
+            <Link className="cs-hub-card" to="/?tab=skills">
               <PortfolioHubIcon type="skills" />
               <h3 className="cs-hub-card-title">Skills &amp; Tech Stack</h3>
               <p className="cs-hub-card-desc">React, Next.js, Express, PyTorch, MediaPipe, OpenCV, SQL, and Power BI.</p>
               <span className="cs-hub-card-link">View Skills →</span>
-            </div>
+            </Link>
 
-            <div className="cs-hub-card" onClick={() => handleNavNavigate('contact')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleNavNavigate('contact')}>
+            <Link className="cs-hub-card" to="/?tab=contact">
               <PortfolioHubIcon type="contact" />
               <h3 className="cs-hub-card-title">Get In Touch</h3>
               <p className="cs-hub-card-desc">Open for software engineering, full-stack, and machine learning opportunities.</p>
               <span className="cs-hub-card-link">Contact Nishwanth →</span>
-            </div>
+            </Link>
           </div>
         </section>
       </main>

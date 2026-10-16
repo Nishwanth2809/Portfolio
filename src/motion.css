@@ -1,0 +1,152 @@
+/* Shared interaction rhythm for the editorial portfolio. */
+:root {
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --motion-fast: 180ms;
+  --motion-normal: 320ms;
+  --lift-shadow: 0 12px 30px rgb(0 0 0 / .09);
+}
+
+[data-theme='dark'] { --lift-shadow: 0 16px 36px rgb(0 0 0 / .3); }
+
+/* Keep familiar pointer affordances and visible keyboard navigation. */
+body { cursor: auto !important; }
+a, button, [role='button'], select { cursor: pointer !important; }
+input, textarea { cursor: text !important; }
+:is(a, button, [role='button'], input, textarea, select):focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 5px;
+}
+.nav-btn:focus-visible .nav-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+:is(.btn, .proj-action-btn, .cs-action-btn, .cs-back-btn, .cs-nav-tab-pill, .projects-filter-pill) {
+  transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease, transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-normal) var(--ease-out);
+}
+:is(.cs-hub-card, .cs-index-card, .cs-bottom-nav-card, .skill-card, .pf-tl-card) {
+  transition: transform var(--motion-normal) var(--ease-out),
+    border-color var(--motion-normal) ease, background-color var(--motion-normal) ease,
+    box-shadow var(--motion-normal) ease;
+}
+.cs-hub-card { color: inherit; text-decoration: none; }
+.cs-hub-card-icon {
+  box-sizing: content-box;
+  padding: 10px;
+  margin-bottom: 4px;
+  border: 1px solid var(--border-16);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: transform var(--motion-normal) var(--ease-out), background-color var(--motion-fast), color var(--motion-fast);
+}
+.cs-hub-card-desc { color: var(--fg-72); }
+.cs-hub-card-link { margin-top: 12px; }
+.cs-spec-row { transition: background-color var(--motion-normal) ease; }
+.cs-spec-row:hover { padding-left: 0; padding-right: 0; }
+.cs-media-showcase { overflow: hidden; }
+.cs-media-img { transition: transform 650ms var(--ease-out); }
+.cs-badge-sparkle { animation: none; }
+.hero-role-readable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.nav-btn svg { transition: transform var(--motion-normal) var(--ease-out), stroke var(--motion-fast); }
+
+/* Focus is as informative as hover; non-interactive cards stay quiet. */
+:is(.cs-hub-card, .cs-index-card, .cs-bottom-nav-card, .proj-card):focus-within {
+  border-color: var(--fg-72);
+  box-shadow: var(--lift-shadow);
+}
+.cs-hub-card:focus-visible .cs-hub-card-icon { background: var(--fg); color: var(--bg); }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.btn, .cs-action-btn):hover { transform: translateY(-2px); box-shadow: var(--lift-shadow); }
+  :is(.cs-hub-card, .cs-index-card, .cs-bottom-nav-card):hover {
+    transform: translateY(-5px);
+    border-color: var(--fg-72);
+    box-shadow: var(--lift-shadow);
+  }
+  .cs-hub-card:hover .cs-hub-card-icon {
+    transform: translateY(-2px);
+    background: var(--fg);
+    color: var(--bg);
+  }
+  .cs-media-showcase:hover .cs-media-img { transform: scale(1.015); }
+  .nav-btn:hover svg { transform: translateY(-2px); }
+  .nav-theme-btn:hover svg { transform: rotate(18deg); }
+  .cs-back-btn:hover svg { transform: translateX(-3px); }
+  .cs-back-btn svg { transition: transform var(--motion-fast) var(--ease-out); }
+}
+
+:is(.btn, .cs-action-btn, .cs-hub-card, .projects-filter-pill, .nav-btn):active {
+  transform: scale(.98);
+}
+
+@keyframes editorial-reveal {
+  from { opacity: .35; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .motion-reveal { animation: editorial-reveal 550ms var(--ease-out) backwards; }
+  .cs-hero { animation: editorial-reveal 450ms var(--ease-out) backwards; }
+}
+
+/* Don't move text or suggest that static labels are clickable. */
+.tag:hover, .skill-primary:hover { transform: none; }
+.cs-metric-card:hover { transform: none; }
+.c-row:not(a):hover { transform: none; background: transparent; }
+.c-row:not(a):hover .c-icon { transform: none; }
+
+/* Preserve reading space while keeping navigation and the live demo nearby. */
+@media (max-width: 768px) {
+  .cs-page-nav { padding: 10px 16px; }
+  .cs-page-nav-inner { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+  .cs-breadcrumbs { display: none; }
+  .cs-page-nav-left { min-width: 0; }
+  .cs-back-btn { white-space: nowrap; padding: 8px 12px; }
+  .cs-page-nav-right { grid-column: 2; grid-row: 1; }
+  .cs-page-nav-center { grid-column: 1 / -1; grid-row: 2; padding-bottom: 0; }
+  .cs-page-container { padding-bottom: 120px; }
+}
+
+@media (max-width: 420px) {
+  .cs-page-nav-right .cs-action-btn--secondary { display: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  :is(.proj-card, .skill-card, .pf-tl-card, .cs-hub-card, .cs-index-card, .cs-bottom-nav-card, .c-row):hover {
+    transform: none;
+    box-shadow: none;
+  }
+  :is(.cs-hub-card-icon, .cs-hub-card-link, .c-icon, .c-arrow) { transform: none !important; }
+  .cs-action-btn, .cs-back-btn, .proj-action-btn, .projects-filter-pill { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  :is(.proj-card, .scroll-stack-card, .skill-card, .pf-tl-card, .cs-hub-card, .cs-index-card,
+    .cs-bottom-nav-card, .c-row, .btn, .cs-action-btn, .cs-hub-card-icon, .cs-hub-card-link,
+    .cs-media-img, .nav-btn, .nav-btn svg, .c-icon, .c-arrow) {
+    transform: none !important;
+  }
+  .type-cursor { display: none; }
+  .hero-role-animated { display: none; }
+  .hero-role-readable {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+}

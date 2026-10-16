@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export default function Navbar({ activeTab, onNavigate, theme, onToggleTheme }) {
   const navRef = useRef(null)
@@ -13,7 +13,7 @@ export default function Navbar({ activeTab, onNavigate, theme, onToggleTheme }) 
   const dragStartRef = useRef({ x: 0, y: 0 })
   const pointerDownRef = useRef(false)
 
-  const updateIndicator = (immediate = false) => {
+  const updateIndicator = useCallback((immediate = false) => {
     if (isDragging) return // handled via inline styles in dragging state
 
     const targetTab = hoveredTab || activeTab
@@ -37,34 +37,24 @@ export default function Navbar({ activeTab, onNavigate, theme, onToggleTheme }) 
         indicatorEl.classList.remove('no-transition')
       }
     }
-  }
-
-  useEffect(() => {
-    updateIndicator(false)
   }, [activeTab, hoveredTab, isDragging])
 
   useEffect(() => {
-    // Initial immediate calculation on load
-    updateIndicator(true)
-
+    updateIndicator(false)
     const handleLoad = () => updateIndicator(true)
     const handleResize = () => updateIndicator(false)
 
     window.addEventListener('load', handleLoad)
     window.addEventListener('resize', handleResize)
 
-    // Run double requestAnimationFrame to ensure layout settles
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        updateIndicator(true)
-      })
-    })
+    const frame = requestAnimationFrame(() => updateIndicator(false))
 
     return () => {
+      cancelAnimationFrame(frame)
       window.removeEventListener('load', handleLoad)
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [updateIndicator])
 
   const handlePointerDown = (e) => {
     if (e.button !== 0) return // only left click

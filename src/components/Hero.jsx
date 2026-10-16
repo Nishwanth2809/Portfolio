@@ -28,8 +28,8 @@ export default function Hero({ className }) {
       </h1>
       
       <p className="hero-role animate-slide-up" style={{ animationDelay: '0.3s' }}>
-        {typedText}
-        <span className="type-cursor">|</span>
+        <span className="hero-role-animated" aria-hidden="true">{typedText}<span className="type-cursor">|</span></span>
+        <span className="hero-role-readable">{fullText}</span>
       </p>
       
       <p className="hero-bio animate-slide-up" style={{ animationDelay: '0.4s' }}>

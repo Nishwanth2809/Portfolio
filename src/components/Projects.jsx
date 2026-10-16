@@ -81,6 +81,7 @@ export default function Projects({ className }) {
           <button
             type="button"
             className={`projects-filter-pill ${filterMode === 'all' ? 'active' : ''}`}
+            aria-pressed={filterMode === 'all'}
             onClick={() => setFilterMode('all')}
           >
             All Projects ({PROJECTS.length})
@@ -88,6 +89,7 @@ export default function Projects({ className }) {
           <button
             type="button"
             className={`projects-filter-pill ${filterMode === 'case-studies' ? 'active' : ''}`}
+            aria-pressed={filterMode === 'case-studies'}
             onClick={() => setFilterMode('case-studies')}
           >
             <span className="filter-star">✦</span> Featured Case Studies
@@ -116,6 +118,7 @@ export default function Projects({ className }) {
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
+                  if (e.target !== e.currentTarget) return
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault()
                     setActiveModalProject(p)

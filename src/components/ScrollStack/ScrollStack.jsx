@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useCallback } from 'react'
 import Lenis from 'lenis'
+import useReducedMotion from '../../hooks/useReducedMotion'
 import './ScrollStack.css'
 
 export const ScrollStackItem = ({ children, itemClassName = '' }) => (
@@ -20,6 +21,7 @@ const ScrollStack = ({
   useWindowScroll = false,
   onStackComplete,
 }) => {
+  const reducedMotion = useReducedMotion()
   const scrollerRef = useRef(null)
   const stackCompletedRef = useRef(false)
   const animationFrameRef = useRef(null)
@@ -221,7 +223,7 @@ const ScrollStack = ({
   useLayoutEffect(() => {
     const container = getScrollContainer()
     const scroller = scrollerRef.current
-    if (!scroller || !container) return
+    if (!scroller || !container || reducedMotion) return
 
     const cards = Array.from(scroller.querySelectorAll('.scroll-stack-card'))
     cardsRef.current = cards
@@ -302,8 +304,15 @@ const ScrollStack = ({
       cardOffsetsRef.current = []
       transformsCache.clear()
       isUpdatingRef.current = false
+      cards.forEach(card => {
+        card.style.transform = ''
+        card.style.webkitTransform = ''
+        card.style.filter = ''
+        card.style.willChange = ''
+      })
     }
   }, [
+    reducedMotion,
     children,
     itemDistance,
     useWindowScroll,
