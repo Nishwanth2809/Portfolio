@@ -54,7 +54,7 @@ export const PROJECTS = [
     ],
     tags: ['React', 'Flask', 'TensorFlow', 'Keras', 'OpenCV'],
     github: 'https://github.com/Nishwanth2809/Brahmi-Script',
-    live: 'https://brahmi-script-evolution.vercel.app/',
+    live: 'https://brahmi-script.vercel.app/',
   },
   {
     num: '04',
