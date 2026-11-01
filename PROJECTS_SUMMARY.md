@@ -31,12 +31,12 @@ This document contains a summary of all projects featured in the portfolio, incl
 - **Skills:** Machine Learning, React, Node.js, OCR, NLP
 - **Live Demo:** [https://medical-report-analyzer-three.vercel.app/](https://medical-report-analyzer-three.vercel.app/)
 
-## 5. Mood-Based Music Recommendation
-**Description:** NLP-powered recommendation engine that detects user mood from text input and maps it to curated Spotify playlists in real time.
-- **Problem:** Finding music that matches your current mood is tedious and manual.
-- **Metric:** 88% mood classification accuracy.
-- **Skills:** NLP, Python, NLP, Spotify API, Streamlit
-- **Live Demo:** [https://moodstream-q4lr.onrender.com/](https://moodstream-q4lr.onrender.com/)
+## 5. Moodify — AI Music Recommendation
+**Description:** AI-powered music curation platform that detects emotional nuance from text or voice notes using Google Gemini and Web Audio analysis, recommending personalized Spotify playlists.
+- **Problem:** Finding music that matches your exact emotional headspace is tedious and manual.
+- **Metric:** Multi-dimensional emotion nuance and vocal tone analysis with 95%+ confidence.
+- **Skills:** Python, Flask, Google Gemini, Spotify API, Web Audio API, NLP
+- **Live Demo:** [https://moodify-8g0x.onrender.com/](https://moodify-8g0x.onrender.com/)
 
 ## 6. Attn — AI Focus Coach
 **Description:** Browser-first personal focus coach powered by on-device computer vision, configurable automation rules, and private session analytics.
